@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# Tic Tac Toe vs AI
+# Just for by R. Scott Reis - December 2011
+
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require 'tic_tac_toe.rb'
+
+puts "  ::  Tic Tac Toe  ::  "
+until quit
+  TicTacToe::Game.new
+  put "Play again? (y/N): "
+  quit = gets.chomp.to_s[1].to_s.downcase != 'y'
+end
+puts "Thanks for playing!"
