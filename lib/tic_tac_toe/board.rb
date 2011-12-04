@@ -6,7 +6,7 @@ module TicTacToe
     end
 
     # display game grid with x's and o's
-    def display_grid
+    def display
       puts "   1   2   3 "
       puts "A: #{@board[0][0]}  | #{@board[0][1]}  | #{@board[0][2]}  "
       puts "  -----------"
@@ -16,7 +16,7 @@ module TicTacToe
     end
 
     # update board with move
-    def update_grid!(mark, coords, raw = false)
+    def update!(mark, coords, raw = false)
       coords = translate_move(coords) unless raw
       @board[coords.first][coords.last] = mark
     end
@@ -58,7 +58,7 @@ module TicTacToe
 
       end
 
-      # board isnt full
+      # board isn't full
       return nil if @board.flatten.include?(SPACE_EMPTY)
 
       # cats game (draw)
@@ -70,8 +70,6 @@ module TicTacToe
       indices = translate_move(coords)
       @board[indices.first][indices.last]
     end
-
-    private
 
     # change coords into array coords
     def translate_move(coords)

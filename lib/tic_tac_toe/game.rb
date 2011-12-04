@@ -4,27 +4,27 @@ module TicTacToe
     # create new game
     def initialize
       @board, @human, @opponent = Board.new, Human.new, Opponent.new
-      Board.display_grid
+      @board.display
       if ([0,1].sample == 1)
         puts "You go first."
-        start_game_loop(@human)
+        @current_player = @human
       else
         puts "CPU goes first."
-        start_game_loop(@opponent)
+        @current_player = @opponent
       end
     end
 
     # loop until game_over
-    def start_game_loop(player)
+    def play
       until @board.game_over?
-        if player.human?
+        if @current_player.human?
           @human.move(@board)
-          player = @opponent
+          @current_player = @opponent
         else
           @opponent.move(@board)
-          player = @human
+          @current_player = @human
         end
-        Board.display_grid
+        @board.display
       end
       game_over(@board.result)
     end

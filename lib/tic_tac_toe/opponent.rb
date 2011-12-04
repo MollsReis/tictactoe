@@ -5,7 +5,7 @@ module TicTacToe
 
     # choose next move
     def move(board)
-      board.update_grid!(mark, best_move(board, :min), true)
+      board.update!(mark, best_move(board, :min), true)
     end
 
     # return O (mark of player)
@@ -18,14 +18,12 @@ module TicTacToe
       false
     end
 
-    private
-
     # calculate value of move(s) recursively
     def best_move(board, max_min)
       poss_moves = {}
       board.possible_moves.each do |move|
         future_board = board
-        future_board.update_grid!(mark, move, true)
+        future_board.update!(mark, move, true)
         result = future_board.result
         if !result.nil?
           poss_moves[move] = result

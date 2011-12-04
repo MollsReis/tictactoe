@@ -8,7 +8,7 @@ module TicTacToe
         space = gets.chomp.to_s
         valid_move = space if board.valid_move?(space)
       end
-      board.update_grid!(mark, valid_move)
+      board.update!(mark, valid_move)
     end
 
     # return X (mark of player)
