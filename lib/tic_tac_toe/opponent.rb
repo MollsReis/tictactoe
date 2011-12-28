@@ -40,7 +40,7 @@ module TicTacToe
       else
         val = poss_moves.values.min
       end
-      poss_moves.select { |k,v| v == val }.keys.sample
+      poss_moves.select { |k,v| v == val }.first
     end
 
   end

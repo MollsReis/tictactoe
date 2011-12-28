@@ -4,19 +4,19 @@ module TicTacToe
   describe Opponent do
 
     describe '#move' do
-      pending
+      pending #TODO
     end
 
     describe '#mark' do
-      pending
+      pending #TODO
     end
 
     describe '#human?' do
-      pending
+      pending #TODO
     end
 
     describe '#best_move' do
-      pending
+      pending #TODO
     end
 
   end

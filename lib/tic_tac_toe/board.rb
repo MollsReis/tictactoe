@@ -39,7 +39,10 @@ module TicTacToe
 
     # return true/false for valid move
     def valid_move?(move)
-      space ~ /[ABC][123]/ && space(move) == SPACE_EMPTY
+      if move =~ /^[abcABC][123]$/
+        return true if space(move) == SPACE_EMPTY
+      end
+      false
     end
 
     # return winner/draw
@@ -73,8 +76,8 @@ module TicTacToe
 
     # change coords into array coords
     def translate_move(coords)
-      row = coords[0].tr('abc','012').to_i
-      col = coords[0].to_i - 1
+      row = coords[0].downcase.tr('abc','012').to_i
+      col = coords[1].to_i - 1
       [row, col]
     end
 

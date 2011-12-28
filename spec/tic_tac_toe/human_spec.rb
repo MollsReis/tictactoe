@@ -8,12 +8,12 @@ module TicTacToe
     describe '#move' do
       context 'given a valid move' do
         it 'executes the move' do
-          pending
+          pending #TODO
         end
       end
       context 'given an invalid move' do
         it 'asks for a valid move' do
-          pending
+          pending #TODO
         end
       end
     end

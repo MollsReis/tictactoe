@@ -6,6 +6,7 @@ $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'tic_tac_toe.rb'
 
 puts "  ::  Tic Tac Toe  ::  "
+quit = false
 until quit
   TicTacToe::Game.new.play
   put "Play again? (y/N): "
