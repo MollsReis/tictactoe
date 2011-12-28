@@ -5,7 +5,7 @@ module TicTacToe
 
     # choose next move
     def move(board)
-      board.update!(mark, best_move(board, :min), true)
+      board.update!(mark, best_move(board, :min).keys.first, true)
     end
 
     # return O (mark of player)
@@ -22,8 +22,13 @@ module TicTacToe
     def best_move(board, max_min)
       poss_moves = {}
       board.possible_moves.each do |move|
-        future_board = board
-        future_board.update!(mark, move, true)
+        future_board = board.clone
+        if max_min == :min
+          current_mark = SPACE_O
+        else
+          current_mark = SPACE_X
+        end
+        future_board.update!(current_mark, move, true)
         result = future_board.result
         if !result.nil?
           poss_moves[move] = result
@@ -38,9 +43,9 @@ module TicTacToe
       if max_min == :min
         val = poss_moves.values.min
       else
-        val = poss_moves.values.min
+        val = poss_moves.values.max
       end
-      poss_moves.select { |k,v| v == val }.first
+      poss_moves.select { |k,v| v == val }.sample
     end
 
   end

@@ -10,6 +10,8 @@ module TicTacToe
 
 end
 
+require 'hash'
+
 require 'tic_tac_toe/board'
 require 'tic_tac_toe/game'
 require 'tic_tac_toe/human'

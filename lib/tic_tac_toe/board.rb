@@ -5,6 +5,10 @@ module TicTacToe
       3.times { (@board ||= []) << [SPACE_EMPTY, SPACE_EMPTY, SPACE_EMPTY] }
     end
 
+    def clone
+      Marshal::load(Marshal.dump(self))
+    end
+
     # display game grid with x's and o's
     def display
       puts "   1   2   3 "
