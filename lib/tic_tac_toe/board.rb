@@ -9,9 +9,9 @@ module TicTacToe
     def display
       puts "   1   2   3 "
       puts "A: #{@board[0][0]}  | #{@board[0][1]}  | #{@board[0][2]}  "
-      puts "  -----------"
+      puts "  --------------"
       puts "B: #{@board[1][0]}  | #{@board[1][1]}  | #{@board[1][2]}  "
-      puts "  -----------"
+      puts "  --------------"
       puts "C: #{@board[2][0]}  | #{@board[2][1]}  | #{@board[2][2]}  "
     end
 

@@ -12,11 +12,32 @@ module TicTacToe
     end
 
     describe '#update!' do
-      pending #TODO
+      context 'given raw coords and a mark' do
+        it 'updates the board with those coordinates with the mark' do
+          board.update!('X', [0,0], true)
+          board.instance_variable_get(:@board).should === [['X',' ',' '],[' ',' ',' '],[' ',' ',' ']]
+          board.update!('O', [1,2], true)
+          board.instance_variable_get(:@board).should === [['X',' ',' '],[' ',' ','O'],[' ',' ',' ']]
+        end
+      end
+      context 'given non-raw coords and a mark' do
+        it 'updates the board with those translated coordinates with the mark' do
+          board.update!('X', 'a1')
+          board.instance_variable_get(:@board).should === [['X',' ',' '],[' ',' ',' '],[' ',' ',' ']]
+          board.update!('O', 'B3')
+          board.instance_variable_get(:@board).should === [['X',' ',' '],[' ',' ','O'],[' ',' ',' ']]
+        end
+      end
     end
 
     describe '#possible_moves' do
-      pending #TODO
+      it 'returns an array of possible moves' do
+        board.possible_moves.should === [[0,0],[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]]
+        board.instance_variable_set(:@board, [%w[X X X],%w[O O O],[' ',' ',' ']])
+        board.possible_moves.should === [[2,0],[2,1],[2,2]]
+        board.instance_variable_set(:@board, [%w[X X X],%w[O O O],%w[X O X]])
+        board.possible_moves.should be_empty
+      end
     end
 
     describe '#game_over?' do
@@ -64,7 +85,29 @@ module TicTacToe
     end
 
     describe '#result' do
-      pending #TODO
+      context 'given a non-result' do
+        it 'returns nil' do
+          board.result.should be_nil
+        end
+      end
+      context 'given a player win' do
+        it 'returns 1.0' do
+          board.instance_variable_set(:@board,[['X','X','X'],[' ',' ',' '],[' ',' ',' ']])
+          board.result.should === 1.0
+        end
+      end
+      context 'given an AI win' do
+        it 'returns -1.0' do
+          board.instance_variable_set(:@board,[['O','O','O'],[' ',' ',' '],[' ',' ',' ']])
+          board.result.should === -1.0
+        end
+      end
+      context 'given a draw' do
+        it 'returns 0.0' do
+          board.instance_variable_set(:@board,[['X','X','O'],['O','O','X'],['X','O','X']])
+          board.result.should === 0.0
+        end
+      end
     end
 
     describe '#space' do
