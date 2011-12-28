@@ -11,6 +11,17 @@ module TicTacToe
       end
     end
 
+    describe '#clone' do
+      it 'creates a deep copy of the board' do
+        my_clone = board.clone
+        my_clone.object_id.should_not === board.object_id
+        my_clone.instance_variable_get(:@board).should === board.instance_variable_get(:@board)
+        my_clone.instance_variable_get(:@board).object_id.should_not === board.instance_variable_get(:@board).object_id
+        my_clone.update!('X',[0,0],true)
+        my_clone.instance_variable_get(:@board).should_not === board.instance_variable_get(:@board)
+      end
+    end
+
     describe '#update!' do
       context 'given raw coords and a mark' do
         it 'updates the board with those coordinates with the mark' do
