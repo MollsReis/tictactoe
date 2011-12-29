@@ -20,6 +20,7 @@ module TicTacToe
 
     # calculate value of move(s) recursively
     def best_move(board, max_min)
+      return special_case(board) if special_case?(board)
       poss_moves = {}
       board.possible_moves.each do |move|
         future_board = board.clone
@@ -46,6 +47,18 @@ module TicTacToe
         val = poss_moves.values.max
       end
       poss_moves.select { |k,v| v == val }.sample
+    end
+
+    # return true/false for having special case
+    def special_case?(board)
+      return true if board.empty?
+      false
+    end
+
+    # check for special cases for moves
+    def special_case(board)
+      return {[0,0] => 0.0, [2,0] => 0.0, [0,2] => 0.0, [2,2] => 0.0}.sample if board.empty?
+      nil
     end
 
   end

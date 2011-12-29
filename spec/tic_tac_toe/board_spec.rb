@@ -121,6 +121,20 @@ module TicTacToe
       end
     end
 
+    describe '#empty?' do
+      context 'given an empty board' do
+        it 'returns true' do
+          board.empty?.should be_true
+        end
+      end
+      context 'given a non-empty board' do
+        it 'returns false' do
+          board.instance_variable_set(:@board,[['X',' ',' '],[' ',' ',' '],[' ',' ',' ']])
+          board.empty?.should be_false
+        end
+      end
+    end
+
     describe '#space' do
       context 'given alpha-numeric coordinates' do
         it 'returns the value of that space on the game board' do

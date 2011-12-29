@@ -72,6 +72,11 @@ module TicTacToe
       GAME_DRAW
     end
 
+    # return true/false for empty board
+    def empty?
+      !@board.flatten.include?(SPACE_X) && !@board.flatten.include?(SPACE_O)
+    end
+
     # return value of space
     def space(coords)
       indices = translate_move(coords)

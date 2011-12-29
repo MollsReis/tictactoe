@@ -39,5 +39,33 @@ module TicTacToe
       end
     end
 
+    describe '#special_case?' do
+      context 'given a board with a special case move' do
+        it 'returns true' do
+          opponent.special_case?(board).should be_true
+        end
+      end
+      context 'given a board without a special case move' do
+        it 'returns false' do
+          board.instance_variable_set(:@board, [['X',' ',' '],[' ',' ',' '],[' ',' ',' ']])
+          opponent.special_case?(board).should be_false
+        end
+      end
+    end
+
+    describe '#special_case' do
+      context 'given a board with a special case move' do
+        it 'returns the special case move' do
+          poss_moves = [{[0,0] => 0.0}, {[2,0] => 0.0}, {[0,2] => 0.0}, {[2,2] => 0.0}]
+          poss_moves.include?(opponent.special_case(board)).should be_true
+        end
+      end
+      context 'given a board without a special case move' do
+        it 'returns nil' do
+          board.instance_variable_set(:@board, [['X',' ',' '],[' ',' ',' '],[' ',' ',' ']])
+          opponent.special_case(board).should be_nil
+        end
+      end
+    end
   end
 end
