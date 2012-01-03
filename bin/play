@@ -10,6 +10,6 @@ quit = false
 until quit
   TicTacToe::Game.new.play
   print "Play again? (y/N): "
-  quit = gets.chomp.to_s[1].to_s.downcase != 'y'
+  quit = gets.chomp.to_s[0].to_s.downcase != 'y'
 end
 puts "Thanks for playing!"
