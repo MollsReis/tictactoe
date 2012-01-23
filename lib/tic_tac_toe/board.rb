@@ -52,12 +52,12 @@ module TicTacToe
     # return winner/draw
     def result
       {SPACE_X => GAME_PLAYER_X_WIN, SPACE_O => GAME_PLAYER_O_WIN}.each do |mark, val|
+        win_cond = /#{mark * 3}/
 
-        # row win
-        [0,1,2].each { |row| return val if @board[row][0] == mark && @board[row][1] == mark && @board[row][2] == mark }
-
-        # column win
-        [0,1,2].each { |col| return val if @board[0][col] == mark && @board[1][col] == mark && @board[2][col] == mark }
+        # check for row or column win
+        [@board, @board.transpose].each do |board|
+          board.each {|col| return val if col.join =~ win_cond}
+        end
 
         # diagonal win
         return val if @board[0][0] == mark && @board[1][1] == mark && @board[2][2] == mark
